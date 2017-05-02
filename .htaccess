@@ -1,0 +1,13 @@
+#
+# Redirect all requests to the web directory.
+#
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteCond %{REQUEST_URI} ^/composer [NC,OR]
+  RewriteCond %{REQUEST_URI} ^/composer.php$
+  RewriteRule ^ composer.php [L]
+
+  RewriteRule ^(.*)$ /web/$1 [L]
+</IfModule>

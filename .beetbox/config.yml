@@ -1,0 +1,5 @@
+---
+vagrant_memory: 2048
+beet_domain: drupal-project.local
+beet_project: custom
+beet_web: "/var/beetbox/"
