@@ -1,0 +1,8 @@
+---
+- name: Disable xdebug.
+  file:
+    path: "/etc/php/{{ php_version }}/fpm/conf.d/20-xdebug.ini"
+    state: absent
+  notify:
+    - restart webserver
+    - restart php-fpm

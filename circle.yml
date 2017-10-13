@@ -1,0 +1,17 @@
+---
+machine:
+  php:
+    version: 7.1.0
+dependencies:
+  override:
+    - composer install --prefer-dist
+    - rm .gitignore && mv .gitignore.dist .gitignore
+    - find ./vendor -type d | grep .git | xargs rm -rf
+    - find ./web -type d | grep .git | xargs rm -rf
+    - git config --global user.email "build@circleci.com"
+    - git config --global user.name "Circle CI"
+    - git add -A && git commit -m"[skip ci] Build of $CIRCLE_SHA1"
+    - git push origin $CIRCLE_BRANCH:build --force
+test:
+  override:
+    - composer validate
